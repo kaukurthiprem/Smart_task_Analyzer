@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Smart Task Analyzer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header>
+        <h1>Smart Task Analyzer</h1>
+        <p>Score and prioritize your tasks intelligently.</p>
+    </header>
+
+    <main>
+        <section id="input-section">
+            <h2>Add Task</h2>
+            <form id="task-form">
+                <div class="field-group">
+                    <label for="title">Title</label>
+                    <input id="title" name="title" type="text" required />
+                </div>
+                <div class="field-group">
+                    <label for="due_date">Due Date</label>
+                    <input id="due_date" name="due_date" type="date" />
+                </div>
+                <div class="field-group">
+                    <label for="estimated_hours">Estimated Hours</label>
+                    <input id="estimated_hours" name="estimated_hours" type="number" step="0.1" min="0" />
+                </div>
+                <div class="field-group">
+                    <label for="importance">Importance (1-10)</label>
+                    <input id="importance" name="importance" type="number" min="1" max="10" value="5" required />
+                </div>
+                <div class="field-group">
+                    <label for="dependencies">Dependencies (IDs, comma separated)</label>
+                    <input id="dependencies" name="dependencies" type="text" placeholder="e.g. 1,2" />
+                </div>
+                <button type="submit">Add Task</button>
+            </form>
+
+            <div class="strategy">
+                <label for="strategy-select">Sorting Strategy:</label>
+                <select id="strategy-select">
+                    <option value="smart_balance">Smart Balance (default)</option>
+                    <option value="fastest_wins">Fastest Wins</option>
+                    <option value="high_impact">High Impact</option>
+                    <option value="deadline_driven">Deadline Driven</option>
+                </select>
+            </div>
+
+            <div class="bulk-input">
+                <h3>Bulk Input (JSON)</h3>
+                <textarea id="bulk-json" rows="6" placeholder='[{"id":"1","title":"Fix bug","due_date":"2025-11-30","estimated_hours":3,"importance":8,"dependencies":[]}]'></textarea>
+                <button id="load-bulk">Load JSON</button>
+            </div>
+
+            <div class="actions">
+                <button id="analyze-tasks">Analyze Tasks</button>
+                <button id="suggest-tasks">Suggest Top 3 for Today</button>
+            </div>
+        </section>
+
+        <section id="output-section">
+            <h2>Tasks</h2>
+            <p id="status"></p>
+            <div id="task-list"></div>
+            <h2>Suggested Tasks for Today</h2>
+            <div id="suggested-list"></div>
+        </section>
+    </main>
+
+    <footer>
+        <small>Singularium - Smart Task Analyzer Demo</small>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
